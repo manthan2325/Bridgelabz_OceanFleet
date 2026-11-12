@@ -42,4 +42,35 @@ public class VesselUtils {
 
         return null;
     }
+
+    //UC-4 CODE ---------------------------------------------------------------->
+    // Retrieves all vessels with the highest average speed.
+    public List<Vessel> getHighPerformanceVessels() {
+
+        List<Vessel> highPerformanceVessels = new ArrayList<>();
+
+        if (vesselList.isEmpty()) {
+            return highPerformanceVessels;
+        }
+
+        double maxSpeed = vesselList.get(0).getAverageSpeed();
+
+        // Finds the maximum average speed.
+        for (Vessel vessel : vesselList) {
+
+            if (vessel.getAverageSpeed() > maxSpeed) {
+                maxSpeed = vessel.getAverageSpeed();
+            }
+        }
+
+        // Collects all vessels with the maximum speed.
+        for (Vessel vessel : vesselList) {
+
+            if (Double.compare(vessel.getAverageSpeed(), maxSpeed) == 0) {
+                highPerformanceVessels.add(vessel);
+            }
+        }
+
+        return highPerformanceVessels;
+    }
 }

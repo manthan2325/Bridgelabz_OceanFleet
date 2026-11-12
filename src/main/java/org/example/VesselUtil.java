@@ -29,4 +29,8 @@ public class VesselUtil {
     public void addVesselPerformance(Vessel vessel) {
         vesselList.add(vessel);
     }
+
+    public List<Vessel> getHighPerformanceVessels() {
+        return null;
+    }
 }
