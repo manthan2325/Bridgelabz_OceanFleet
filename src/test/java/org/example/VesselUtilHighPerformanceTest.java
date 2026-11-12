@@ -9,24 +9,24 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class   VesselUtilHighPerformanceTest {
+class VesselUtilHighPerformanceTest {
 
-    private VesselUtil vesselUtil;
+    private VesselUtils vesselUtils;
 
     @BeforeEach
     void setUp() {
 
-        VesselUtils vesselUtil = new VesselUtils();
+        vesselUtils = new VesselUtils();
 
-        vesselUtil.addVesselPerformance(
+        vesselUtils.addVesselPerformance(
                 new Vessel("V001", "Sea King", 25.5, "Cargo")
         );
 
-        vesselUtil.addVesselPerformance(
+        vesselUtils.addVesselPerformance(
                 new Vessel("V002", "Ocean Star", 18.0, "Tanker")
         );
 
-        vesselUtil.addVesselPerformance(
+        vesselUtils.addVesselPerformance(
                 new Vessel("V003", "Wave Rider", 22.3, "Cruise")
         );
     }
@@ -35,7 +35,7 @@ class   VesselUtilHighPerformanceTest {
     void testGetSingleHighPerformanceVessel() {
 
         List<Vessel> result =
-                vesselUtil.getHighPerformanceVessels();
+                vesselUtils.getHighPerformanceVessels();
 
         assertEquals(1, result.size());
         assertEquals("V001", result.get(0).getVesselId());
@@ -45,12 +45,12 @@ class   VesselUtilHighPerformanceTest {
     @Test
     void testGetMultipleHighPerformanceVessels() {
 
-        vesselUtil.addVesselPerformance(
+        vesselUtils.addVesselPerformance(
                 new Vessel("V004", "Blue Horizon", 25.5, "Cruise")
         );
 
         List<Vessel> result =
-                vesselUtil.getHighPerformanceVessels();
+                vesselUtils.getHighPerformanceVessels();
 
         assertEquals(2, result.size());
 
@@ -61,12 +61,12 @@ class   VesselUtilHighPerformanceTest {
     @Test
     void testHighestSpeedIsAtLastPosition() {
 
-        vesselUtil.addVesselPerformance(
+        vesselUtils.addVesselPerformance(
                 new Vessel("V004", "Blue Horizon", 30.0, "Cargo")
         );
 
         List<Vessel> result =
-                vesselUtil.getHighPerformanceVessels();
+                vesselUtils.getHighPerformanceVessels();
 
         assertEquals(1, result.size());
         assertEquals("V004", result.get(0).getVesselId());
@@ -75,7 +75,7 @@ class   VesselUtilHighPerformanceTest {
     @Test
     void testAllVesselsHaveSameSpeed() {
 
-        VesselUtil util = new VesselUtil();
+        VesselUtils util = new VesselUtils();
 
         util.addVesselPerformance(
                 new Vessel("V001", "Sea King", 20.0, "Cargo")
@@ -97,7 +97,7 @@ class   VesselUtilHighPerformanceTest {
     @Test
     void testGetHighPerformanceVesselsFromEmptyList() {
 
-        VesselUtil emptyUtil = new VesselUtil();
+        VesselUtils emptyUtil = new VesselUtils();
 
         List<Vessel> result =
                 emptyUtil.getHighPerformanceVessels();
@@ -110,10 +110,10 @@ class   VesselUtilHighPerformanceTest {
     void testResultContainsOriginalVesselObjects() {
 
         List<Vessel> result =
-                vesselUtil.getHighPerformanceVessels();
+                vesselUtils.getHighPerformanceVessels();
 
         assertSame(
-                vesselUtil.getVesselList().get(0),
+                vesselUtils.getVesselList().get(0),
                 result.get(0)
         );
     }
